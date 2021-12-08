@@ -57,12 +57,8 @@ public class MoneyTransferTest {
         int secondCardCurrentBalanceBeforeTransfer = dashboardPage.getSecondCardCurrentBalance();
         val moneyTransferPage = dashboardPage.secondCard();
         moneyTransferPage.moneyTransfer(firstCardData, amount);
-        int firstCardBalanceAfterTransfer = DataHelper.balanceCardTransferFrom(firstCardBalanceBeforeTransfer, amount);
-        int secondCArdBalanceAfterTransfer = DataHelper.balanceCardTransferTo(secondCardCurrentBalanceBeforeTransfer, amount);
-        int firstCardNewBalance = dashboardPage.getFirstCardCurrentBalance();
-        int secondCArdNewBalance = dashboardPage.getSecondCardCurrentBalance();
-        assertEquals(firstCardBalanceAfterTransfer, firstCardNewBalance);
-        assertEquals(secondCArdBalanceAfterTransfer, secondCArdNewBalance);
+        $(withText("Ошибка. Сумма не должна быть нулевой")).shouldBe(Condition.visible);
+
 
     }
 
