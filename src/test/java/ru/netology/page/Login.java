@@ -5,7 +5,7 @@ import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class login {
+public class Login {
     private SelenideElement loginField = $("input[name=\"login\"]");
     private SelenideElement passwordField = $("input[name=\"password\"]");
     private SelenideElement loginButton = $("[data-test-id=action-login]");

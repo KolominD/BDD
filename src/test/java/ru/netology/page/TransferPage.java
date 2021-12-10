@@ -11,11 +11,28 @@ public class TransferPage {
     private SelenideElement sumField = $("[data-test-id=amount] input");
     private SelenideElement cardField = $("[data-test-id='from'] input");
     private SelenideElement transferButton = $("[data-test-id=action-transfer]");
+    private SelenideElement sumShouldNotBeZero = $(withText("Сумма не должна быть нулевой"));
+    private SelenideElement notEnoughMoney = $(withText("На счете е достаточно средств"));
 
     public void moneyTransfer(DataHelper.CardData cardData, int amount) {
         sumField.setValue(String.valueOf(amount));
         cardField.setValue(cardData.getCardNumber());
         transferButton.click();
     }
-
+    public void sumShouldNotBeZeroMethod (DataHelper.CardData cardData, int amount){
+        sumField.setValue(String.valueOf(amount));
+        cardField.setValue(cardData.getCardNumber());
+        transferButton.click();
+        if(amount == 0){
+            sumShouldNotBeZero.shouldBe(Condition.visible);
+        }
+    }
+    public void notEnoughMoneyForTransfer(DataHelper.CardData cardData, int amount){
+        sumField.setValue(String.valueOf(amount));
+        cardField.setValue(cardData.getCardNumber());
+        transferButton.click();
+        if(amount > Integer.parseInt(cardData.getCardBalance())){
+            notEnoughMoney.shouldBe(Condition.visible);
+        }
+    }
 }

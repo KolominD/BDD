@@ -21,8 +21,8 @@ public class MoneyTransferTest {
     @BeforeEach
     void setUp() {
         Configuration.headless = true;
-        open("http://localhost:9999", login.class);
-        val login = new login();
+        open("http://localhost:9999", Login.class);
+        val login = new Login();
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = login.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
@@ -57,8 +57,7 @@ public class MoneyTransferTest {
         int secondCardCurrentBalanceBeforeTransfer = dashboardPage.getSecondCardCurrentBalance();
         val moneyTransferPage = dashboardPage.secondCard();
         moneyTransferPage.moneyTransfer(firstCardData, amount);
-        $(withText("Ошибка. Сумма не должна быть нулевой")).shouldBe(Condition.visible);
-
+        moneyTransferPage.sumShouldNotBeZeroMethod(firstCardData,amount);
 
     }
 
@@ -71,8 +70,7 @@ public class MoneyTransferTest {
         int secondCardCurrentBalanceBeforeTransfer = dashboardPage.getSecondCardCurrentBalance();
         val moneyTransferPage = dashboardPage.secondCard();
         moneyTransferPage.moneyTransfer(firstCardData, amount);
-        $(withText("Ошибка. На балансе недостаточно средств")).shouldBe(Condition.visible);
-
+        moneyTransferPage.notEnoughMoneyForTransfer(firstCardData, amount);
     }
 
 
