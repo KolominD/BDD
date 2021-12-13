@@ -19,20 +19,15 @@ public class TransferPage {
         cardField.setValue(cardData.getCardNumber());
         transferButton.click();
     }
-    public void sumShouldNotBeZeroMethod (DataHelper.CardData cardData, int amount){
-        sumField.setValue(String.valueOf(amount));
-        cardField.setValue(cardData.getCardNumber());
-        transferButton.click();
-        if(amount == 0){
-            sumShouldNotBeZero.shouldBe(Condition.visible);
-        }
+
+    public void sumShouldNotBeZeroMethod() {
+
+        sumShouldNotBeZero.shouldBe(Condition.visible);
+
     }
-    public void notEnoughMoneyForTransfer(DataHelper.CardData cardData, int amount){
-        sumField.setValue(String.valueOf(amount));
-        cardField.setValue(cardData.getCardNumber());
-        transferButton.click();
-        if(amount > Integer.parseInt(cardData.getCardBalance())){
-            notEnoughMoney.shouldBe(Condition.visible);
-        }
+
+    public void notEnoughMoneyForTransfer() {
+        notEnoughMoney.shouldBe(Condition.visible);
+
     }
 }

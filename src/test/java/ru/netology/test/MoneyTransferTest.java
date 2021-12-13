@@ -52,12 +52,9 @@ public class MoneyTransferTest {
     public void transferZeroFromFirstToSecond() {
         int amount = 0;
         var firstCardData = DataHelper.CardData.getFirstCardData();
-        var secondCardData = DataHelper.CardData.getSecondCardData();
-        int firstCardBalanceBeforeTransfer = dashboardPage.getFirstCardCurrentBalance();
-        int secondCardCurrentBalanceBeforeTransfer = dashboardPage.getSecondCardCurrentBalance();
         val moneyTransferPage = dashboardPage.secondCard();
         moneyTransferPage.moneyTransfer(firstCardData, amount);
-        moneyTransferPage.sumShouldNotBeZeroMethod(firstCardData,amount);
+        moneyTransferPage.sumShouldNotBeZeroMethod();
 
     }
 
@@ -65,12 +62,9 @@ public class MoneyTransferTest {
     public void transferFromFirstToGoUnderThanLimit() {
         int amount = 30000;
         var firstCardData = DataHelper.CardData.getFirstCardData();
-        var secondCardData = DataHelper.CardData.getSecondCardData();
-        int firstCardBalanceBeforeTransfer = dashboardPage.getFirstCardCurrentBalance();
-        int secondCardCurrentBalanceBeforeTransfer = dashboardPage.getSecondCardCurrentBalance();
         val moneyTransferPage = dashboardPage.secondCard();
         moneyTransferPage.moneyTransfer(firstCardData, amount);
-        moneyTransferPage.notEnoughMoneyForTransfer(firstCardData, amount);
+        moneyTransferPage.notEnoughMoneyForTransfer();
     }
 
 
